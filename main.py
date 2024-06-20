@@ -14,13 +14,17 @@ word_list = [
 st.title("Random Words Generator")
 st.header("Random Word")
 
+placeholder = st.empty()
+st.markdown('Click the **`Generate`** button to generate new word')
+
 if st.button("Generate"):
     random_word = random.choice(word_list)
     meaning = dictionary.meaning(random_word)
     
-    st.header(f"{random_word.capitalize()}")
-    if meaning:
-        for key, value in meaning.items():
-            st.write(f"Meaning: ({key}) {', '.join(value)}")
-    else:
-        st.write("Meaning not found.")
+    with placeholder.container():
+        st.header(f"{random_word.capitalize()}")
+        if meaning:
+            for key, value in meaning.items():
+                st.write(f"Meaning: ({key}) {', '.join(value)}")
+        else:
+            st.write("Meaning not found.")
